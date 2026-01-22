@@ -1,4 +1,4 @@
-# Random Password Generator
+# passgen.py
 
 This Python script generates strong, easy to memorize passwords using random words from a dictionary file.
 
@@ -12,7 +12,7 @@ This Python script generates strong, easy to memorize passwords using random wor
 ```
 3. Navigate to the project directory:
 ```bash
-cd random-password-generator
+cd passgen
 ```
 
 ## Usage
@@ -20,8 +20,16 @@ cd random-password-generator
 The script can be run directly from the command line specifying the number of words to use and optionally, some other options:
 
 ```bash
-python generate_password.py <num_words> [options]
+python passgen.py <num_words> [options]
 ```
+
+Optionally you can make it executable and move it in your `$PATH` with:
+
+```bash
+chmod +x passgen.py && mv passgen.py ~/bin
+```
+
+In this example I am using `~/bin`, change according to your system. Or not, I'm not your dad 😜
 
 ### Options
 
@@ -34,22 +42,22 @@ python generate_password.py <num_words> [options]
 
 1. Generate a 3-word password (the default if no argument is passed) with default settings:
    ```bash
-   python generate_password.py
+   python passgen.py
    ```
 
 2. Generate a 6-word password with a custom separator `!`:
    ```bash
-   python generate_password.py 6 -s !
+   python passgen.py 6 -s !
    ```
 
 3. Generate a 7-word password using a random separator and no numbers:
    ```bash
-   python generate_password.py 7 --random-separator -0
+   python passgen.py 7 --random-separator -0
    ```
 
 4. Generate an 8-word password with capitalized words disabled:
    ```bash
-   python generate_password.py 8 -A
+   python passgen.py 8 -A
    ```
 
 ## Separators
