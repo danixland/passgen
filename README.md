@@ -5,10 +5,11 @@ This Python script generates strong, easy to memorize passwords using random wor
 ## Installation
 
 1. Ensure Python 3.x is installed on your system.
-2. Clone the repository to your local machine:
+2. The default dictionary is `/usr/share/dict/words`, make sure you have it in your system or change it in the script.
+3. Clone the repository to your local machine:
 
 ```bash
-   git clone https://github.com/yourusername/random-password-generator.git
+git clone https://github.com/yourusername/random-password-generator.git
 ```
 3. Navigate to the project directory:
 ```bash
