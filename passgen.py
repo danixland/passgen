@@ -20,6 +20,16 @@
 
 import argparse
 import random
+import string
+from zxcvbn import zxcvbn
+
+### ANSI escape codes for colors
+COLOR_GREEN = '\033[92m'
+COLOR_YELLOW = '\033[93m'
+COLOR_RED = '\033[91m'
+COLOR_BLUE = '\033[94m'
+COLOR_PURPLE = '\033[95m'
+COLOR_RESET = '\033[0m'
 
 ### VARIABLES
 # by default we'll use these many words
@@ -47,6 +57,19 @@ def get_separator(custom_symbol, use_random):
     else:
         separator = "@"
     return separator
+
+def check_strength(password):
+    result = zxcvbn(password)
+    crack_times = result['crack_times_display']
+    crack_times_K = {
+        'offline_fast_hashing_1e10_per_second': "Offline Hashing, Fast",
+        'offline_slow_hashing_1e4_per_second': "Offline Hashing, Slow",
+        'online_no_throttling_10_per_second': "Online Hashing Fast (10 attempts per second)",
+        'online_throttling_100_per_hour': "Online Hashing Slow (100 attempts per hour)"
+    }
+    crack_times_readable = {crack_times_K[key]: value for key, value in crack_times.items()}
+    score = result['score']
+    return score, result['feedback']['warning'], result['feedback']['suggestions'], crack_times_readable
 
 def generate_password(num_words, custom_symbol=None, use_random_separator=False, include_numerals=True, min_length=0, capitalize_words=False):
     words = get_random_words(num_words)
@@ -110,12 +133,36 @@ def main():
                         help='Disable numbers in the output')
     parser.add_argument('-A', '--no-capitals', action='store_false', dest='capitalize_words',
                         help='Disable capitalized words in the output')
+    parser.add_argument('--strength', action='store_true', help='Display the strength of the password')
     
     args = parser.parse_args()
     
     password = generate_password(args.num_words, args.separator, args.random_separator, args.include_numerals, args.min_length, args.capitalize_words)
     
-    print(f"{password}")
+    if args.strength:
+        score, message, sugg, ctimes = check_strength(password)
+        print(f'Generated Password: {password}')
+        # print(f'Strength: {"Weak (1/5)" if score == 0 else "Bad (2/5)" if score == 1 else "Mediocre (3/5)" if score == 2 else "Good (4/5)" if score == 3 else "Strong (5/5)"}')
+        if 0 < score <= 1:
+            color = COLOR_RED
+        elif 2 < score <= 3:
+            color = COLOR_YELLOW
+        elif score == 4:
+            color = COLOR_GREEN
+        print(f'Strenght: {color}{"Weak (1/5)" if score == 0 else "Bad (2/5)" if score == 1 else "Mediocre (3/5)" if score == 2 else "Good (4/5)" if score == 3 else "Strong (5/5)"}{COLOR_RESET}')
+
+        if message:
+            print(f'Description: {message}')
+
+        if sugg:
+            print(f'Suggestions: {str(sugg[0])}')
+
+        if ctimes:
+            for key, value in ctimes.items():
+                print(f" - {key}: {COLOR_PURPLE}{value}{COLOR_RESET}")
+
+    else:
+        print(password)
 
 if __name__ == "__main__":
     main()
