@@ -1,4 +1,4 @@
-<img src="/home/danix/Programming/GIT/GITHUB/passgen/assets/passgen.jpg" style="zoom:50%;margin:0 auto;" />
+<img src="assets/passgen.jpg" style="zoom:50%;margin:0 auto;" />
 
 # passgen.py
 
