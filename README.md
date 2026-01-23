@@ -125,3 +125,9 @@ This project is licensed under the GPLv2 License - see the [LICENSE](LICENSE) fi
 ## Author
 
  - [danix](https://danix.xyz) - it's just me, really...
+
+## Interesting reads on the argument
+
+- [password evolved - authentication guidance for the modern era](https://www.troyhunt.com/passwords-evolved-authentication-guidance-for-the-modern-era/)
+- https://haveibeenpwned.com/Passwords
+- [owasp cheat sheet on authentication](https://cheatsheetseries.owasp.org/cheatsheets/Authentication_Cheat_Sheet.html)
