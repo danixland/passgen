@@ -1,12 +1,8 @@
+<img src="/home/danix/Programming/GIT/GITHUB/passgen/assets/passgen.jpg" style="zoom:50%;margin:0 auto;" />
+
 # passgen.py
 
 This Python script generates strong, easy to memorize passwords using random words from a dictionary file.
-
-## Inspiration
-
-![](https://imgs.xkcd.com/comics/password_strength.png)
-
-thanks [xkcd](https://xkcd.com/936).
 
 ## Installation
 
@@ -121,6 +117,12 @@ Contributions are welcome! Feel free to fork the repository and submit a pull re
 ## License
 
 This project is licensed under the GPLv2 License - see the [LICENSE](LICENSE) file for details.
+
+## Inspiration
+
+![](https://imgs.xkcd.com/comics/password_strength.png)
+
+thanks [xkcd](https://xkcd.com/936).
 
 ## Author
 
