@@ -38,6 +38,7 @@ In this example I am using `~/bin`, change according to your system. Or not, I'm
 
 ### Options
 
+- `-c, --clipboard`: copies the password to the clipboard. (NOTE: it currently only works in wayland, no X11 implementation since I don't use it)
 - `-s, --separator SEPARATOR`: Specify a custom separator symbol from our list (default: `@`). See [Separators](#separators).
 - `-r, --random-separator`: Use a random separator from a predefined list.
 - `-t, --strength`: Display the strength of the generated password. (this output is not suitable for piping into other applications)
@@ -71,6 +72,7 @@ In this example I am using `~/bin`, change according to your system. Or not, I'm
    ```
 
 5. Generate a (weak) 1 word password with a short min lenght, with no capitals and no numbers, but test its strenght:
+
    ```bash
    $> python passgen.py 1 -A0 --min-length 6 --strength
    Generated Password: catsup
@@ -81,8 +83,16 @@ In this example I am using `~/bin`, change according to your system. Or not, I'm
     - Offline Hashing, Slow: 1 second
     - Offline Hashing, Fast: less than a second
    ```
-
 *Also, the output is colored* :grin:
+
+6. Copy the generated password to your wayland clipboard
+
+    ```bash
+    $> python passgen.py -c
+    Churchyard@hopes@focused8
+    ```
+    
+    Now you can simply `Ctrl+v` your password into another application.
 
 ## My password is bigger than yours!
 

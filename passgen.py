@@ -21,6 +21,7 @@
 import argparse
 import random
 import string
+from os import system
 from zxcvbn import zxcvbn
 
 ### ANSI escape codes for colors
@@ -133,7 +134,8 @@ def main():
                         help='Disable numbers in the output')
     parser.add_argument('-A', '--no-capitals', action='store_false', dest='capitalize_words',
                         help='Disable capitalized words in the output')
-    parser.add_argument('--strength', action='store_true', help='Display the strength of the password')
+    parser.add_argument('-t', '--strength', action='store_true', help='Display the strength of the password')
+    parser.add_argument('-c', '--clipboard', action='store_true', help='copy the password to the clipboard')
     
     args = parser.parse_args()
     
@@ -163,6 +165,9 @@ def main():
 
     else:
         print(password)
+
+    if args.clipboard:
+        system("echo " + password + " | wl-copy")
 
 if __name__ == "__main__":
     main()
